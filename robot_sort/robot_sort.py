@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -96,15 +98,123 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # while self.light_is_on() == False:
+        #     self.set_light_on()
+        #     self.swap_item()
+        #     while self.can_move_right():
+        #         if self.compare_item():
+        #             self.swap_item()
+        #             self.set_light_off()
+        #         else:
+        #             self.move_right()
 
+        #     print(self._list)
 
+        # pickup first item, compare with next item
+        # if held item is greater, swap
+        # else:
+        #     if you can move right
+        #     move right
+        #     else
+        #     move left until pos item is none
+        #     swap
+        self.set_light_on()
+        while self.light_is_on():
+            if self._item == None:
+                self.swap_item()
+            if self.can_move_right():
+                self.move_right()
+            if self.compare_item() == 1:
+                self.swap_item()
+            if self.can_move_right() is False and self._item:
+                while self._list[self._position] is not None:
+                    self.move_left()
+                self.swap_item()
+                if self.can_move_right():
+                    self.move_right()
+                else:
+                    self.set_light_off()
+
+        ###################################
+        # if self.light_is_on() is False:
+        #     self.set_light_on()
+        # while self.light_is_on():
+        #     self.set_light_off()
+        #     if self._position == 0:
+        #         self.swap_item()            # turn light on
+        #     # move right if possible
+        #     if self.can_move_right() == True:
+        #         self.move_right()
+        #     # compare_item
+        #         if self.compare_item() == 1:
+        #             # if self.light_is_on() == True:
+        #             # check to see if light is off, turn light off
+        #             # if holding item is greater, returned 1, swap,
+        #             self.swap_item()
+
+        #             # move back one
+        #             if self.can_move_left() == True:
+        #                 self.move_left()
+        #             # swap to set
+        #             self.swap_item()
+        #             # move right
+        #             self.move_right()
+        #             # swap
+        #             self.set_light_on()
+        #             if self.can_move_right():
+        #                 self.swap_item()
+
+        #             # repeat
+
+        #     # if holding item is less, returned - 1,
+        #         elif self.compare_item() == -1:
+        #             # # check to see if light is off, turn light off
+        #             #         if self.light_is_on() == False:
+        #             #             self.set_light_on()
+        #             # move left,
+        #             if self.can_move_left() == True:
+        #                 self.move_left()
+        #             # swap
+        #             self.swap_item()
+        #             # move right
+        #             self.move_right()
+        #             self.set_light_on()
+        #             # swap,
+        #             if self.can_move_right():
+        #                 self.swap_item()
+        #                 # repeat
+        #             else:
+        #                 for i in range(self._position):
+        #                     self.move_left()
+
+        #     # if holding item is equal to item position,
+        #         elif self.compare_item() == 0:
+        #             # go back one and swap
+        #             self.set_light_on()
+        #             self.move_left()
+        #             # go right one and swap
+        #             self.swap_item()
+        #             self.move_right()
+        #             self.swap_item()
+        #             # repeat
+        #     else:
+        #         self.set_light_off()
+        #         for i in range(self._position):
+        #             self.move_left()
+#########################################
+        # if self._list[0] < self._list[-1] and self._list[0] < self._list[1] and self._list[-1] < self._list[-2]:
+        #     return self._list
+        # if self.light_is_on() == False:
+        #     self.set_light_on()
+
+        # if light is on, you cycled thru without swapping, light only toggled off if you swapped.
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1,
+         45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    # l = [15, 7, 1, 3, 10, 4, 18, 8]
 
     robot = SortingRobot(l)
 
