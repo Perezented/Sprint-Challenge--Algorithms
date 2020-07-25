@@ -119,6 +119,7 @@ class SortingRobot:
         #     move left until pos item is none
         #     swap
         self.set_light_on()
+
         while self.light_is_on():
             if self._item == None:
                 self.swap_item()
@@ -206,7 +207,6 @@ class SortingRobot:
         #     return self._list
         # if self.light_is_on() == False:
         #     self.set_light_on()
-
 
         # if light is on, you cycled thru without swapping, light only toggled off if you swapped.
 if __name__ == "__main__":

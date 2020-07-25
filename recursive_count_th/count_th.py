@@ -13,9 +13,9 @@ def count_th(word, i=None, k=None, count=None):
         k = i + 2
         count = 0
     if i != len(word):
-        print('')
-        print(word)
-        print(word[i:k])
+        # print('')
+        # print(word)
+        # print(word[i:k])
         if word[i:k] == 'th':
             count += 1
             i += 1
